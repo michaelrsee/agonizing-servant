@@ -30,6 +30,6 @@ jobs:
         az deployment group create \
           --name ExampleDeployment \
           --resource-group $resourceGroupName \
-          --template-file ./path/to/your/storage.bicep
+          --template-file ./storage.bicep
       env:
         resourceGroupName: $resourceGroupName
