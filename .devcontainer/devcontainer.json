@@ -1,7 +1,6 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {},
-    "ghcr.io/devcontainers-contrib/features/actions-runner:1": {}
+    "ghcr.io/rchaganti/vsc-dev container-features/azurebicep:1": {}
   }
 }
