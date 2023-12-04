@@ -1,4 +1,4 @@
-param storageAccountName string = 'stmrsdemo' // Replace with your desired name
+param storageAccountName string = $resourceGroupName // Replace with your desired name
 param location string = resourceGroup().location // Use the same location as the resource group
 param sku string = 'Standard_LRS' // Standard Locally-redundant storage
 
