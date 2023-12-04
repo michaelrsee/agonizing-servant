@@ -1,0 +1,13 @@
+{
+  "name": "Azure Bicep & GitHub Actions Development",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:0-buster",
+  "extensions": [
+    "ms-azuretools.vscode-bicep",
+    "cschleiden.vscode-github-actions"
+  ],
+  "settings": {
+    // Add any specific VS Code settings here
+  },
+  "postCreateCommand": "az bicep install"
+  // Add other configurations like forwarded ports, environment variables, etc.
+}
