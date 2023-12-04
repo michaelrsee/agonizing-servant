@@ -1,6 +1,0 @@
-{
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/rchaganti/vsc-dev container-features/azurebicep:1": {}
-  }
-}
