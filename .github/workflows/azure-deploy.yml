@@ -1,0 +1,35 @@
+name: Deploy Azure Resources
+
+on: [push] # Triggers the workflow on push events
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.WORKFLOW_ST }} # Azure credentials from GitHub Secrets
+
+    - name: Install Azure CLI Bicep extension
+      run: az bicep install
+
+    - name: Generate Resource Group Name and Create Resource Group
+      run: |
+        resourceGroupName="myResourceGroup$RANDOM"
+        echo "Resource Group Name: $resourceGroupName"
+        az group create --name $resourceGroupName --location EastUS
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
+
+    - name: Deploy Bicep template
+      run: |
+        az deployment group create \
+          --name ExampleDeployment \
+          --resource-group $resourceGroupName \
+          --template-file ./path/to/your/storage.bicep
+      env:
+        resourceGroupName: $resourceGroupName
