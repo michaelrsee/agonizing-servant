@@ -1,11 +1,13 @@
 name: Deploy Azure Resources
 
-on: 
+on:
   workflow_dispatch: # Enables manual trigger from the GitHub UI
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      STORAGE_ACCOUNT_NAME: "mystorageaccount$RANDOM" # Generate a random storage account name
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -13,7 +15,7 @@ jobs:
     - name: Login to Azure
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.WORKFLOW_ST }} # Azure credentials from GitHub Secrets
+        creds: ${{ secrets.WORKFLOW_ST }}
 
     - name: Install Azure CLI Bicep extension
       run: az bicep install
@@ -22,7 +24,7 @@ jobs:
       run: |
         resourceGroupName="myResourceGroup$RANDOM"
         echo "Resource Group Name: $resourceGroupName"
-        az group create --name $resourceGroupName --location EastUS
+        az group create --name $resourceGroupName --location <Location>
       env:
         AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
 
@@ -31,6 +33,7 @@ jobs:
         az deployment group create \
           --name ExampleDeployment \
           --resource-group $resourceGroupName \
-          --template-file ./storage.bicep
+          --template-file ./path/to/your/storage.bicep \
+          --parameters storageAccountName=${{ env.STORAGE_ACCOUNT_NAME }}
       env:
         resourceGroupName: $resourceGroupName
