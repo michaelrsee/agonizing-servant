@@ -1,4 +1,4 @@
-param storageAccountName string = $resourceGroupName // Replace with your desired name
+param storageAccountName string // Passed in from Github Action
 param location string = resourceGroup().location // Use the same location as the resource group
 param sku string = 'Standard_LRS' // Standard Locally-redundant storage
 
@@ -17,6 +17,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-08-01' = {
 
 // Storage container within the storage account
 resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-08-01' = {
-  name: '${storageAccount.name}/default/files'
+  name: '${storageAccountName}/default/files'
   properties: {}
 }
