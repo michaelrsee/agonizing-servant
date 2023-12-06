@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       STORAGE_ACCOUNT_NAME: "mystorageaccount$RANDOM" # Generate a random storage account name
-      RESOURCE_GROUP_NAME: "myResourceGroup$RANDOM" # Geberate a random resource group name
+      RESOURCE_GROUP_NAME: "myresourcegroup$RAANDOM" 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
