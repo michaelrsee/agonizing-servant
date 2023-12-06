@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      STORAGE_ACCOUNT_NAME: "mystorageaccount$RANDOM" # Generate a random storage account name
+      STORAGE_ACCOUNT_NAME: "msgithubtest01" # Generate a random storage account name
       RESOURCE_GROUP_NAME: "rg-github-test" 
     steps:
     - name: Checkout Repository
@@ -21,13 +21,6 @@ jobs:
     - name: Install Azure CLI Bicep extension
       run: az bicep install
 
-    - name: Generate Resource Group Name and Create Resource Group
-      run: |
-        echo "Resource Group Name: ${{ env.RESOURCE_GROUP_NAME }}"
-        az group create --name ${{ env.RESOURCE_GROUP_NAME }} --location EastUS
-      env:
-        AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
-
     - name: Deploy Bicep template
       run: |
         az deployment group create \
@@ -35,4 +28,6 @@ jobs:
           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
           --template-file ./storage.bicep \
           --parameters storageAccountName=${{ env.STORAGE_ACCOUNT_NAME }}
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
 
