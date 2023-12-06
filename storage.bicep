@@ -14,9 +14,3 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-08-01' = {
     accessTier: 'Hot'
   }
 }
-
-// Storage container within the storage account
-resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-08-01' = {
-  name: '${storageAccountName}/default/files'
-  properties: {}
-}
