@@ -11,11 +11,11 @@ This repository contains a set of GitHub Actions workflows designed to automate 
 
 ### 1. Create Azure Storage Container
 
-This workflow (`create-container.yml`) allows for the creation of a new container in a specified Azure Storage Account. It is manually triggered and requires the name of the container to be created.
+This workflow (`azure-deploy-st-container.yml`) allows for the creation of a new container in a specified Azure Storage Account. It is manually triggered and requires the name of the container to be created.
 
 ### 2. Copy Data to Azure Storage Container
 
-The `copy-to-storage.yml` workflow is designed to upload files from the "data" directory in this repository to a specified container in Azure Storage. This workflow is manually triggered and requires the target container name for uploading the files.
+The `azure-deploy-file-to-storage-account.yml` workflow is designed to upload files from the "data" directory in this repository to a specified container in Azure Storage. This workflow is manually triggered and requires the target container name for uploading the files.
 
 ## Getting Started
 
@@ -48,7 +48,7 @@ Contributions to enhance these workflows are welcome. Please read the [CONTRIBUT
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md) - see the LICENSE.md file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE.md file for details.
 
 ## Acknowledgments
 
