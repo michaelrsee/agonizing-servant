@@ -1,0 +1,29 @@
+name: Create Azure Storage Account Container
+
+on:
+  workflow_dispatch:
+    inputs:
+      containerName:
+        description: 'Container Name'
+        required: true
+        default: 'filescontainer'
+
+jobs:
+  create-container:
+    runs-on: ubuntu-latest
+    env:
+        STORAGE_ACCOUNT_NAME: "msgithubtest01"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.WORKFLOW_ST }}
+
+      - name: Create Storage Container
+        run: |
+          az storage container create --name ${{ github.event.inputs.containerName }} --account-name ${{ env.STORAGE_ACCOUNT_NAME }} --auth-mode login
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
