@@ -1,0 +1,31 @@
+name: Copy Data to Azure Storage Container
+
+on:
+  workflow_dispatch:
+    inputs:
+      containerName:
+        description: 'Target Container Name'
+        required: true
+        default: 'filescontainer'
+
+jobs:
+  copy-to-container:
+    runs-on: ubuntu-latest
+    env:
+        STORAGE_ACCOUNT_NAME: "msgithubtest01"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.WORKFLOW_ST }}
+
+      - name: Upload files to Storage Container
+        run: |
+          for file in data/*; do
+            az storage blob upload --account-name ${{ env.STORAGE_ACCOUNT_NAME }} --container-name ${{ github.event.inputs.containerName }} --file "$file" --name "$(basename "$file")" --auth-mode key
+          done
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.WORKFLOW_ST }}
