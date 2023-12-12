@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      STORAGE_ACCOUNT_NAME: "msgithubtest01" # Generate a random storage account name
+      STORAGE_ACCOUNT_NAME: "msgithubtest01" 
       RESOURCE_GROUP_NAME: "rg-github-test" 
     steps:
     - name: Checkout Repository
