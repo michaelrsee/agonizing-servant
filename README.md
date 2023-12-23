@@ -2,10 +2,13 @@
 
 This repository contains a set of GitHub Actions workflows designed to automate various interactions with Azure Storage. These actions enable seamless management of storage resources directly from GitHub, facilitating a more integrated and automated cloud workflow.
 
+[Overview Video](https://youtu.be/3wPPOoUSc_Q?si=43Iz53d8LKBVV1uy)
+
 ## Features
 
 - **Automatic Storage Container Creation**: A workflow to create a new container in an existing Azure Storage Account.
 - **Data Upload Workflow**: A workflow to upload the contents of a specified folder from the repository to an Azure Storage container.
+
 
 ## Workflows
 
